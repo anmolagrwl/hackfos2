@@ -43,6 +43,23 @@ var app = {
             var lon = document.getElementById('longi');
             lati.innerHTML = position.coords.latitude;
             lon.innerHTML = position.coords.longitude;
+
+            function onSuccess_acc(acceleration) {
+                var xaxis = document.getElementById('xaxis');
+                var yaxis = document.getElementById('yaxis');
+                var zaxis = document.getElementById('zaxis');
+
+                xaxis.innerHTML = acceleration.x;
+                yaxis.innerHTML = acceleration.y;
+                zaxis.innerHTML = acceleration.z;
+            };
+
+            function onError_acc() {
+                alert('onError!');
+            };
+
+            navigator.accelerometer.getCurrentAcceleration(onSuccess_acc, onError_acc);
+
         }
 
         // onError Callback receives a PositionError object
