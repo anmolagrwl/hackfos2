@@ -28,12 +28,17 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+        <h1>Road roughness app</h1>
+        <div>
+           <strong><p>Accelerometer</p></strong>
+            <p>X-axis : <span id="xaxis">...</span><p>
+            <p>Y-axis : <span id="yaxis">...</span><p>
+            <p>Z-axis : <span id="zaxis">...</span><p>
+        </div>
+        <div>
+           <strong><p>GPS</p></strong>
+           <p>Latitude : <span id="lati">...</span></p>
+           <p>Longitude : <span id="longi">...</span></p>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
