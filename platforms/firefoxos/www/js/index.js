@@ -33,7 +33,28 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+        // app.receivedEvent('deviceready');
+        // onSuccess Callback
+        //   This method accepts a `Position` object, which contains
+        //   the current GPS coordinates
+        //
+        function onSuccess(position) {
+            var lati = document.getElementById('lati');
+            var lon = document.getElementById('longi');
+            lati.innerHTML = position.coords.latitude;
+            lon.innerHTML = position.coords.longitude;
+        }
+
+        // onError Callback receives a PositionError object
+        //
+        function onError(error) {
+            alert('code: '    + error.code    + '\n' +
+                  'message: ' + error.message + '\n');
+        }
+
+        // Options: throw an error if no update is received every 30 seconds.
+        //
+        var watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 3000 });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
