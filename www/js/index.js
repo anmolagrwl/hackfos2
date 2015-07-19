@@ -16,6 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var myFirebaseRef = new Firebase("https://road-roughness.firebaseio.com/");
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -52,6 +54,22 @@ var app = {
                 xaxis.innerHTML = acceleration.x;
                 yaxis.innerHTML = acceleration.y;
                 zaxis.innerHTML = acceleration.z;
+
+                myFirebaseRef.push({
+                  "type" : "Feature",
+                  "properties" : {
+                    "x-acc" : acceleration.x,
+                    "y-acc" : acceleration.y,
+                    "z-acc" : acceleration.z
+                  },
+                  "geometry" : {
+                    "type" : "Point",
+                    "coordinates" : [
+                      position.coords.latitude,
+                      position.coords.longitude
+                    ]
+                  }
+                })
             };
 
             function onError_acc() {
@@ -59,7 +77,6 @@ var app = {
             };
 
             navigator.accelerometer.getCurrentAcceleration(onSuccess_acc, onError_acc);
-
         }
 
         // onError Callback receives a PositionError object
